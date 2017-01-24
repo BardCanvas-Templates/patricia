@@ -1,0 +1,414 @@
+/**
+ * Posts styles, for BardCanvas
+ *
+ * @package    HNG2
+ * @subpackage core
+ * @author     Alejandro Caballero - lava.caballero@gmail.com
+ */
+
+/* Slider, for the home page */
+
+#posts_slider {
+    font-family: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+    margin-bottom: 20px; background-color: white;
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+
+#quick_post_form_container {
+    margin-bottom: 20px; background-color: white;
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+
+/* Space added when the slider has only one item */
+#quick_post_form_container.spaced { margin-top: 20px; }
+
+/* Common meta areas */
+
+.meta_box                       { padding: 10px 10px 5px 10px; }
+.meta_box .user_avatar          { float: left; margin-right: 10px; width: 42px; height: 42px; }
+.meta_box .meta_field           { display: inline-block; padding: 2px 4px; }
+.meta_box .meta_field.dimmed    { color: dimgrey; }
+.meta_box .meta_field.important { color: blue; }
+.meta_box .meta_field.critical  { color: #FF0080; text-shadow: none; }
+.meta_box .meta_section         { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 16px; padding: 1px; }
+.meta_box .meta_section.upper   { font-size: 11pt; }
+
+/* Posts */
+
+#posts_pagination             { font-family: 'Lora', sans-serif; font-size: 14pt; line-height: 1em; }
+#posts_pagination a           { text-decoration: none; }
+#posts_pagination a[disabled] { cursor: default; color:  grey; }
+
+.posts_index article                          { margin-bottom: 20px; background-color: white;
+                                               -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+                                               -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+                                               box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25); }
+.posts_index article h1                       { margin: 0; padding: 5px 10px; }
+.posts_index article .post_featured_image     { padding: 5px 10px; }
+.posts_index article .post_featured_image img { width: 100%; }
+.posts_index article .post_contents           { padding: 5px 10px 10px 10px; }
+.posts_index article .post_contents *         { margin-top: 1px; margin-bottom: 1px; }
+.posts_index article .post_excerpt img        { max-width: 100%; }
+
+body#tinymce blockquote,
+article .post_contents blockquote,
+#post_comments .comment_entry .content blockquote {
+    margin-left: 20px;
+    padding: 10px 10px 10px 20px;
+    background-color: #efefef;
+    border-left: 5px solid silver;
+    color: grey;
+}
+
+article.single_post, .content_frame {
+    margin-bottom: 20px; background-color: white; padding: 10px;
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+    box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+article.single_post.reviewing { background-color: #ffe3e6; }
+
+/* Single post overrides */
+
+.single_post h1           { font-size: 18pt; line-height: 20pt; }
+.single_post h1 .emojione { height: 18pt;  }
+.single_post .meta_box    { margin-bottom: 20px; }
+
+.single_post img   { max-width: 100%; }
+.single_post video { max-width: 100%; max-height: 90vh; }
+.single_post img[data-id-media] { height: auto; }
+
+.single_item_actions { margin-top: 0; }
+
+.single_item_actions .item  {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px 5px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: normal;
+    font-weight: bold;
+}
+
+.single_item_actions .item  {
+    border:           1px solid #990d0d;
+    color:            #990d0d;
+    background-color: white;
+}
+
+.single_item_actions .action {
+    cursor:           pointer;
+    color:            white;
+    background-color: #990d0d;
+}
+
+.single_item_actions .warning {
+    color:            #990d0d;
+    background-color: yellow;
+    border-color:     #990d0d;
+}
+
+.single_item_actions .seamless_right {
+    margin-right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.single_item_actions .seamless_left {
+    margin-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;
+    border-left: none;
+    color: yellow;
+    background-color: orangered;
+}
+
+.single_item_actions .action:hover { background-color: red; }
+
+.single_item_actions .action.admin {
+    border-color:     #bf005b;
+    color:            white;
+    background-color: #FF0080;
+}
+
+.single_item_actions .action.admin:hover {
+    border-color:     purple;
+    color:            white;
+    background-color: #bf00bf;
+}
+
+/* ======= */
+/* INDEXES */
+/* ======= */
+
+/* Featured posts, only on the home */
+
+.featured_post                { display: block; text-decoration: none;
+                                background-color: white; margin-bottom: 10px;
+                                -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+                                -moz-box-shadow:    1px 1px 5px 0 rgba(0, 0, 0, 0.25);
+                                box-shadow:         1px 1px 5px 0 rgba(0, 0, 0, 0.25); }
+.featured_post h3             { padding: 5px; margin: 0; font-size: 10pt; line-height: normal; }
+.featured_post .thumbnail     { display: block; border: none; }
+.featured_post .thumbnail img { width: 100%; border: none; }
+.featured_post .critical      { color: #FF0080; }
+.featured_post .admin_stuff   { font-family: Arial, Helvetica, sans-serif;
+                                font-size: 11pt; line-height: 12pt; padding-bottom: 2pt;
+                                border-top: 1px solid #FF0080; padding-top: 5px; margin-top: 5px; }
+
+/* By default, they're above the contents (For portrait mobiles) */
+
+#featured_posts_column { display: block; float: none; padding-left: 0; }
+
+/* They're on from 720px wide and above */
+
+/* Responsiveness */
+
+#home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper {
+    float: left;
+}
+
+@media all and (min-width: 1367px) and (max-width: 99999px)
+{
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper   { width: 70%; }
+    #home_index_wrapper[data-with-featured-posts="true"] #featured_posts_column { width: 30%; display: block; float: right; padding-left: 10px; }
+}
+
+@media all and (min-width: 1281px) and (max-width: 1366px)
+{
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper   { width: 65%; }
+    #home_index_wrapper[data-with-featured-posts="true"] #featured_posts_column { width: 35%; display: block; float: right; padding-left: 10px; }
+}
+
+@media all and (min-width: 1025px) and (max-width: 1280px)
+{
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper   { width: 63%; }
+    #home_index_wrapper[data-with-featured-posts="true"] #featured_posts_column { width: 37%; display: block; float: right; padding-left: 10px; }
+}
+
+@media all and (min-width: 769px) and (max-width: 1024px)
+{
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper   { width: 68%; }
+    #home_index_wrapper[data-with-featured-posts="true"] #featured_posts_column { width: 32%; display: block; float: right; padding-left: 10px; }
+}
+
+@media all and (min-width: 100px) and (max-width: 480px)
+{
+    /* Sidebar is hidden here. We must adjust the content width. */
+    #content { width: 100%; }
+}
+
+/* Home without featured posts: two columns on laptops and up */
+
+@media all and (min-width: 1280px) {
+    #home_index_wrapper[data-with-featured-posts="false"] #posts_index {
+        -webkit-column-count: 2; -webkit-column-gap: 10px;
+        -moz-column-count:    2; -moz-column-gap:    10px;
+        column-count:         2; column-gap:         10px;
+    }
+
+    #home_index_wrapper[data-with-featured-posts="false"] #posts_index article {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+/* Last resort for huge displays with featured posts (two cols index) */
+@media all and (min-width: 1920px) and (max-width: 99999px)
+{
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index_wrapper   { width: 75%; }
+    #home_index_wrapper[data-with-featured-posts="true"] #featured_posts_column { width: 25%; display: block; float: right; padding-left: 10px; }
+    
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index {
+        -webkit-column-count: 2; -webkit-column-gap: 10px;
+        -moz-column-count:    2; -moz-column-gap:    10px;
+        column-count:         2; column-gap:         10px;
+    }
+    #home_index_wrapper[data-with-featured-posts="true"] #posts_index article {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+
+/* Here goes two columns for small displays */
+@media all and (min-width: 260px) and (max-width: 768px)
+{
+    #featured_posts_column {
+        -webkit-column-count: 2; -webkit-column-gap: 10px;
+        -moz-column-count:    2; -moz-column-gap:    10px;
+        column-count:         2; column-gap:         10px;
+    }
+    .featured_post { display: inline-block; width: 100%; }
+    
+    /* old ways:
+    .featured_post              { display: inline-block; vertical-align: top; 
+                                  width: calc(50% - 8px); margin-right: 10px; }
+    .featured_post:nth-child(2) { margin-right: 0; }
+    */
+}
+
+/* Archives: Two columns for large displays */
+
+@media all and (min-width: 1281px) {
+
+    body[data-page-tag="search_results"] .posts_index ,
+    body[data-listing-type="archive"] .posts_index ,
+    .posts_index[data-is-front-page="false"] {
+        -webkit-column-count: 2; -webkit-column-gap: 10px;
+        -moz-column-count:    2; -moz-column-gap:    10px;
+        column-count:         2; column-gap:         10px;
+    }
+
+    body[data-page-tag="search_results"] .posts_index article ,
+    body[data-listing-type="archive"] .posts_index article ,
+    .posts_index[data-is-front-page="false"] article {
+        display: inline-block; width: 100%;
+    }
+    
+    /* old ways:
+    body[data-listing-type="archive"] .posts_index article ,
+    .posts_index[data-is-front-page="false"] article {
+        float: left;
+        width: calc(50% - 5px);
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    body[data-listing-type="archive"] .posts_index article:nth-child(even) ,
+    .posts_index[data-is-front-page="false"] article:nth-child(even) {
+        margin-right: 0;
+    }
+    */
+}
+
+/* Comments on single posts */
+
+#post_comments .comment_entry                { margin-top: 10px; padding-top: 10px; border-top: 2px solid silver;
+                                               font-family: Arial, Helvetica, sans-serif; line-height: normal; }
+#post_comments .comment_entry.single_preview { margin-top: 0; padding-top: 0; 
+                                               border-top: none; }
+#post_comments .comment_entry:first-child    { margin-top: 0; }
+#post_comments .comment_entry .content       { margin-left: 67px; }
+#post_comments .comment_entry .comment_reply { margin-left: 67px; }
+
+#post_comments .comment_entry .comment_reply .target  form { margin-top: 10px; }
+#post_comments .comment_entry .comment_reply .trigger { margin-top: 10px; font-family: Arial, Helvetica, sans-serif; }
+
+#post_comments .comment_entry .comment_reply .trigger a,
+#post_comments .comment_entry .comment_reply .trigger span.pseudo_link {
+    font-size: 10pt; line-height: 12pt;
+    display: inline-block; margin-right: 5px; margin-bottom: 5px;
+}
+
+#post_comments .comment_entry[data-indent-level="2"] { margin-left:  66px; }
+#post_comments .comment_entry[data-indent-level="3"] { margin-left: 132px; }
+#post_comments .comment_entry[data-indent-level="4"] { margin-left: 198px; }
+#post_comments .comment_entry[data-indent-level="5"] { margin-left: 264px; }
+
+@media all and (max-width: 1024px) {
+
+    #post_comments .comment_entry .content       { margin-left: 5px; }
+    #post_comments .comment_entry .comment_reply { margin-left: 5px; }
+    
+    #post_comments .comment_entry[data-indent-level="2"] { margin-left: 0; }
+    #post_comments .comment_entry[data-indent-level="3"] { margin-left: 0; }
+    #post_comments .comment_entry[data-indent-level="4"] { margin-left: 0; }
+    #post_comments .comment_entry[data-indent-level="5"] { margin-left: 0; }
+
+    #post_comments .comment_entry[data-indent-level="2"] .content { margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="3"] .content { margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="4"] .content { margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="5"] .content { margin-left: 10px; }
+    
+    #post_comments .comment_entry[data-indent-level="2"] .comment_wrapper { padding-left:  5px; }
+    #post_comments .comment_entry[data-indent-level="3"] .comment_wrapper { padding-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="4"] .comment_wrapper { padding-left: 15px; }
+    #post_comments .comment_entry[data-indent-level="5"] .comment_wrapper { padding-left: 20px; }
+    
+    #post_comments .comment_entry[data-indent-level="2"] .comment_reply  { padding-left:  5px; margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="3"] .comment_reply  { padding-left: 10px; margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="4"] .comment_reply  { padding-left: 15px; margin-left: 10px; }
+    #post_comments .comment_entry[data-indent-level="5"] .comment_reply  { padding-left: 20px; margin-left: 10px; }
+    
+    #post_comments .comment_entry[data-indent-level="2"] .comment_wrapper {
+        background: -moz-linear-gradient(   left, silver 0, silver 1px, white 2px);
+        background: -webkit-linear-gradient(left, silver 0, silver 1px, white 2px);
+        background: -o-linear-gradient(     left, silver 0, silver 1px, white 2px);
+        background: -ms-linear-gradient(    left, silver 0, silver 1px, white 2px);
+        background: linear-gradient(    to right, silver 0, silver 1px, white 2px);
+    }
+    
+    #post_comments .comment_entry[data-indent-level="3"] .comment_wrapper {
+        background: -moz-linear-gradient(   left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px);
+        background: -webkit-linear-gradient(left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px);
+        background: -o-linear-gradient(     left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px);
+        background: -ms-linear-gradient(    left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px);
+        background: linear-gradient(    to right, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px);
+    }
+    
+    #post_comments .comment_entry[data-indent-level="4"] .comment_wrapper {
+        background: -moz-linear-gradient(   left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px);
+        background: -webkit-linear-gradient(left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px);
+        background: -o-linear-gradient(     left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px);
+        background: -ms-linear-gradient(    left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px);
+        background: linear-gradient(    to right, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px);
+    }
+    
+    #post_comments .comment_entry[data-indent-level="5"] .comment_wrapper {
+        background: -moz-linear-gradient(   left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px, white 14px, silver 15px, silver 16px, white 17px);
+        background: -webkit-linear-gradient(left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px, white 14px, silver 15px, silver 16px, white 17px);
+        background: -o-linear-gradient(     left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px, white 14px, silver 15px, silver 16px, white 17px);
+        background: -ms-linear-gradient(    left, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px, white 14px, silver 15px, silver 16px, white 17px);
+        background: linear-gradient(    to right, silver 0, silver 1px, white 3px, white 4px, silver 5px, silver 6px, white 7px, white 9px, silver 10px, silver 11px, white 12px, white 14px, silver 15px, silver 16px, white 17px);
+    }
+
+    #post_comments .comment_entry .comment_reply[data-is-reply-active="true"] {
+        margin-left:0; padding-left: 0;
+    }
+}
+
+/*
+#post_comments .comment_entry .content p     ,
+body#tinymce .comment_quote p                { margin-top: 2px; margin-bottom: 2px; }
+*/
+
+#post_comments .comment_entry .content img { max-width: 100%; }
+
+/* Generic elements */
+
+.simple_entries_listing .date        { color: grey; }
+.simple_entries_listing .date:before { content: '[' }
+.simple_entries_listing .date:after  { content: ']:' }
+
+/* Quick posts form */
+
+#quick_post_form_container form .field                         { margin-bottom: 5px; }
+#quick_post_form_container form .field:last-child              { margin-bottom: 0; }
+#quick_post_form_container form .field.attachments             { margin-bottom: 0; }
+
+#quick_post_form_container form .field[data-field="title"]     { margin-bottom: 0; line-height: 0; }
+#quick_post_form_container form .rest                          { margin-top: 5px; }
+
+#quick_post_form_container form .field.attachments .attachment {
+    white-space: nowrap; margin: 0 5px 5px 0;
+}
+
+/* Pinned posts and special posts */
+
+article.pinned,  .featured_post.pinned  { border: 2px solid #990d0d;    border-left: 6px solid #990d0d;    background-color: whitesmoke; }
+article.special, .featured_post.special { border: 2px solid darkorange; border-left: 6px solid darkorange; background-color: lightyellow; }
+
+/* Post comments on indexes */
+
+ul.post_comments { padding-left: 22px; font-family: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+                   font-size: 11pt; line-height: 1.1em; margin-top: 10px !important; }
+ul.post_comments .emojione { height: 1em; }
+ul.post_comments li img { max-width: 100%; }

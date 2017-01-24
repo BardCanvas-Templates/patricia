@@ -1,0 +1,91 @@
+
+/* Core colors */
+
+h1 { color: #ac00df; }
+h2 { color: #f07; }
+h3 { color: #1500f8; }
+
+a:link,            .pseudo_link                            { color: #c06;    }
+a:active, a:hover, .pseudo_link:active, .pseudo_link:hover { color: #ff0081; }
+a:visited,         .pseudo_link:visited                    { color: #7f0037; }
+
+h1 a, h1 .pseudo_link, h2 a, h2 .pseudo_link, h3 a, h3 .pseudo_link { color: #c06; }
+
+#header { color: whitesmoke; background-color: #ac00df; }
+#footer { color: whitesmoke; background-color: #1500f8; }
+
+#header { border-bottom: 2px solid #9000bf; }
+
+#header .main_menu_item               { color: whitesmoke; }
+#header .main_menu_item:link          { color: whitesmoke; }
+#header .main_menu_item:hover         { color: whitesmoke; background-color: #df44ff;    }
+#header .main_menu_item.current       { color: #9400bf;    background-color: whitesmoke; }
+#header .main_menu_item.current:hover { color: whitesmoke; background-color: #e486ff;    }
+
+#header .main_menu_item.highlighted               { color: #ebff00; }
+#header .main_menu_item.highlighted:link          { color: #ebff00; }
+#header .main_menu_item.highlighted:hover         { color: black; background-color: #ebff00; }
+#header .main_menu_item.highlighted.current       { color: black; background-color: #abbf00; }
+#header .main_menu_item.highlighted.current:hover { color: black; background-color: #b9ff45; }
+
+#header .main_menu_item.alerted               { color: maroon; background-color: yellow; }
+#header .main_menu_item.alerted:link          { color: maroon; }
+#header .main_menu_item.alerted:hover         { color: red;    }
+#header .main_menu_item.alerted.current       { color: red;    }
+#header .main_menu_item.alerted.current:hover { color: red;    }
+
+#header .main_menu_item.alerted       .fa.fa-border { border-color: maroon; }
+#header .main_menu_item.alerted:hover .fa.fa-border { border-color: red;    }
+
+#header .main_menu_item.submenu_visible       { color: #9400bf;    background-color: whitesmoke; }
+#header .main_menu_item.submenu_visible:hover { color: whitesmoke; background-color: #df44ff; }
+
+#main_menu_trigger.open                       { color: #f07; background-color: black; }
+
+/* Dropdown menu */
+
+.dropdown_menu                               { color: white; background-color: #f07; }
+.dropdown_menu .main_menu_item               { color: white; }
+.dropdown_menu .main_menu_item:link          { color: white; }
+.dropdown_menu .main_menu_item:hover         { color: white;   background-color: black;   }
+.dropdown_menu .main_menu_item.current       { color: #f07;    background-color: #f6f8f9; }
+.dropdown_menu .main_menu_item.current:hover { color: #f07;    background-color: #ebff00; }
+
+.dropdown_menu .main_menu_item.highlighted               { color: black; background-color: #ebff00; }
+.dropdown_menu .main_menu_item.highlighted:link          { color: black; background-color: #ebff00; }
+.dropdown_menu .main_menu_item.highlighted:hover         { color: green; background-color: #ebff00; }
+.dropdown_menu .main_menu_item.highlighted.current       { color: black; background-color: #abbf00; }
+.dropdown_menu .main_menu_item.highlighted.current:hover { color: green; background-color: #b9ff45; }
+
+section > h1 { color: white;   background-color: #ac00df; border-color: #64007f; }
+section > h2 { color: #F2FFAD; background-color: #1500f8; border-color: #13007f; }
+section > h3 { color: #ebff00; background-color: #f07;    border-color: #7f003f; }
+
+section > h1 a, section > h1 .pseudo_link, section > h1 .pseudo_link:hover { color: white; }
+section > h2 a, section > h2 .pseudo_link, section > h2 .pseudo_link:hover { color: white; }
+section > h3 a, section > h3 .pseudo_link, section > h3 .pseudo_link:hover { color: white; }
+
+.info_handler.highlighted { color: white; background-color: #1500f8; }
+
+/* Core Admin colors */
+
+#admin_menu { color: black; background-color: #ebff00; }
+
+#admin_menu .admin_bar_title { color: #647f00; }
+
+#admin_menu .item       { color: black; }
+#admin_menu .item:hover { color: #ebff00; background-color: black; }
+
+#admin_menu .item.current       { color: white; background-color: #647f00; }
+#admin_menu .item.current:hover { color: white; background-color: #9dbf00; }
+
+#admin_menu_trigger:hover { color: #ebff00; background-color: black;   }
+#admin_menu_trigger.open  { color: white;   background-color: #647f00; }
+
+body.admin h1 { color: white;   background-color: #ac00df; border-color: #64007f; }
+body.admin h2 { color: white;   background-color: #ac00df; border-color: #64007f; }
+body.admin h3 { color: #ac00df; background-color: #fff6ed; border-color: #64007f; }
+
+body.admin h1 a, body.admin h1 .pseudo_link { color: #ebff00; }
+body.admin h2 a, body.admin h2 .pseudo_link { color: #ebff00; }
+body.admin h3 a, body.admin h3 .pseudo_link { color: #ebff00; }

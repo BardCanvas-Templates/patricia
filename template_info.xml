@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+
+    <name>Patricia</name>
+
+    <version>1.0</version>
+
+    <description>
+        Base with color and font changes
+    </description>
+
+    <notes><![CDATA[
+        Base color: ac00df ~ violet
+        Base left : 1500f8 ~ blue
+        Base right: f07    ~ purplish red
+        Complement: ebff00 ~ greenish yellow
+        Extra:      c06    ~ shade of purplish red
+        
+        Fonts:
+        • Body:            Noto Serif
+        • Table cells:     Arsenal, Fira Sans Extra Condensed
+        • Fixed width:     Space Mono
+        • Headings:        Nunito
+        • Footer, sidebar: Firas Sans Condensed
+    ]]></notes>
+
+    <group>Yokika</group>
+
+    <tags>responsive, facebook clone, wordpress clone, mobile, desktop, multpile columns</tags>
+
+    <author>
+        <company>LAVA SoftWorks</company>
+        <name>Alejandro Caballero</name>
+        <email>lava.caballero@gmail.com</email>
+    </author>
+
+</template>

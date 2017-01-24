@@ -1,0 +1,271 @@
+<?php
+/**
+ * Comments listing for single post.
+ * Note: this is included directly, so no globals are imported.
+ *
+ * @package    BardCanvas
+ * @subpackage comments
+ * @author     Alejandro Caballero - lava.caballero@gmail.com
+ *
+ * @var config   $config
+ * @var settings $settings
+ * @var template $template
+ * @var module   $this_module    self (comments)
+ * @var module   $current_module posts
+ *             
+ * Trailing vars:
+ * @var post_record      $post
+ * @var comment_record[] $comments
+ * @var boolean          $allow_new_comments
+ */
+
+use hng2_base\config;
+use hng2_base\module;
+use hng2_base\settings;
+use hng2_base\template;
+use hng2_modules\comments\comment_record;
+use hng2_modules\comments\comments_repository;
+use hng2_modules\posts\post_record;
+use hng2_tools\record_browser;
+
+$browser    = new record_browser("");
+$repository = new comments_repository();
+
+list($find_params, $comments_count, $comments, $pagination) = $repository->get_for_single_post($post->id_post);
+if( $comments_count == 0 && $post->allow_comments == 0 ) return;
+/** @var comment_record[] $parents */
+$parents = array();
+foreach($comments as $comment)
+    if( empty($comment->parent_comment) )
+        $parents[$comment->id_comment] = $comment;
+?>
+
+<div id="post_comments" class="content_frame" data-post-id="<?= $post->id_post ?>">
+    
+    <h1>
+        <? if( $post->allow_comments && $allow_new_comments ): ?>
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="#post_new_comment_form" class="pull-right"><?= $this_module->language->list->post_comment ?></a>
+        <? endif; ?>
+        
+        <?= replace_escaped_vars($this_module->language->list->title, '{$amount}', $comments_count) ?>
+    </h1>
+    
+    <? foreach($comments as $comment):
+        $author     = $comment->get_author();
+        $avatar_url = $author->get_avatar_url();
+        $max_level  = $settings->get("modules:comments.max_indent_level"); if( empty($max_level) ) $max_level = 5;
+        $level      = $comment->indent_level <= $max_level ? $comment->indent_level : $max_level; ?>
+        
+        <div class="comment_entry" id="comment_<?= $comment->id_comment ?>" data-id-comment="<?= $comment->id_comment ?>"
+             data-parent-comment="<?= $comment->parent_comment ?>" data-indent-level="<?= $level ?>"
+             data-post-id="<?= $post->id_post ?>">
+            
+            <div class="comment_wrapper">
+                <div class="meta_box clearfix">
+                    <img class="user_avatar" src="<?= $avatar_url ?>">
+                    
+                    <div class="meta_section upper">
+                        <? if($author->_exists): ?>
+                            <a class="meta_field user_display_name" data-user-level="<?= $author->level ?>"
+                               href="<?= $config->full_root_url ?>/user/<?= $author->user_name ?>/">
+                                <span class="fa fa-user fa-fw"></span>
+                                <?= $author->get_processed_display_name() ?>
+                            </a>
+                            
+                            <? if($account->level >= config::COADMIN_USER_LEVEL && $account->id_account != $author->id_account): ?>
+                                <span class="meta_field critical pseudo_link" onclick="if(confirm($_GENERIC_CONFIRMATION)) toggle_account( '<?= $author->id_account ?>', 'disable', this )">
+                                    <span class="fa fa-lock"></span>
+                                    <?= $language->disable ?>
+                                </span>
+                                <span class="user_level_switcher">
+                                    <span class="current meta_field critical pseudo_link"
+                                          onclick="open_level_switcher(this, '<?= $author->id_account ?>', '<?= $author->level ?>', false)">
+                                        <span class="fa fa-pencil fa-fw"></span>
+                                        [<?= $author->level ?>] <?= $config->user_levels_by_level[$author->level] ?>
+                                    </span>
+                                    <span class="target" style="display: none;"></span>
+                                </span>
+                            <? endif; ?>
+                        <? else: ?>
+                            <span class="meta_field">
+                                <span class="fa fa-question-circle-o fa-fw"></span>
+                                <?= $comment->author_display_name ?>
+                            </span>
+                        <? endif; ?>
+                        
+                        <?
+                        if( ! empty($comment->parent_comment) )
+                        {
+                            $parent = $parents[$comment->parent_comment];
+                            if( ! empty($parent) )
+                            {
+                                if( empty($parent->id_author) )
+                                {
+                                    echo "
+                                        <span class='fa fa-chevron-right fa-fw'></span>
+                                        <span class='fa fa-question-circle'></span>
+                                        {$parent->author_display_name}
+                                    ";
+                                }
+                                else
+                                {
+                                    $parent_author = $parent->get_author();
+                                    echo "
+                                        <span class='fa fa-chevron-right fa-fw'></span>
+                                        <a class='user_display_name inline-block' data-user-level='{$parent_author->level}'
+                                           href='{$config->full_root_path}/user/{$parent_author->user_name}'>
+                                            <span class='fa fa-user fa-fw'></span>
+                                            {$parent_author->get_processed_display_name()}
+                                        </a>
+                                    ";
+                                }
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="meta_section">
+                        <span class="meta_field dimmed">
+                            <span class="fa fa-calendar fa-fw"></span>
+                            <?= time_today_string($comment->creation_date) . " (" . time_elapsed_string($comment->creation_date) . ")" ?>
+                        </span>
+                        
+                        <? if( ! empty($comment->creation_ip) && $account->level >= config::MODERATOR_USER_LEVEL ): ?>
+                            <span class="meta_field critical">
+                                <span class="fa fa-cloud"></span>
+                                <?= $comment->creation_ip ?>
+                            </span>
+                            <a class="meta_field critical" href="<?= $config->full_root_path ?>/comments/?search_for=<?= $comment->creation_ip ?>">
+                                <span class="fa fa-search"></span>
+                                <?= $language->ip ?>
+                            </a>
+                            <? $parts = explode(".", $comment->creation_ip); array_pop($parts); ?>
+                            <a class="meta_field critical" href="<?= $config->full_root_path ?>/comments/?search_for=<?= implode(".", $parts) ?>.">
+                                <span class="fa fa-search"></span>
+                                <?= $language->segment ?>
+                            </a>
+                            
+                            <?
+                            $parts   = explode("; ", $comment->creation_location);
+                            $isp      = array_pop($parts);
+                            $country  = array_pop($parts);
+                            $city     = implode("; ", $parts);
+                            if( $city != "N/A; N/A") : ?>
+                                <a class="meta_field critical" href="<?= $config->full_root_path ?>/comments/?search_for=<?= urlencode($city) ?>">
+                                    <span class="fa fa-map-marker"></span>
+                                    <?= $city ?>
+                                </a>
+                            <? endif; ?>
+                            <? if($country != "N/A"): ?>
+                                <a class="meta_field critical" href="<?= $config->full_root_path ?>/comments/?search_for=<?= urlencode($country) ?>">
+                                    <span class="fa fa-globe"></span>
+                                    <?= $country ?>
+                                </a>
+                            <? endif; ?>
+                            <? if($isp != "N/A"): ?>
+                                <a class="meta_field critical" href="<?= $config->full_root_path ?>/comments/?search_for=<?= urlencode($isp) ?>">
+                                    <span class="fa fa-building"></span>
+                                    <?= $isp ?>
+                                </a>
+                            <? endif; ?>
+                        <? endif; ?>
+                    </div>
+                </div>
+                
+                <div class="content">
+                    <?= $comment->get_processed_content() ?>
+                </div>
+            </div>
+            
+            <div class="comment_reply">
+                <div class="trigger">
+                    <? if($post->allow_comments && $allow_new_comments): ?>
+                        <span class="pseudo_link reply_comment_trigger" onclick="prepare_comment_reply(this, false, true)">
+                            <span class="fa fa-reply"></span>
+                            <?= $this_module->language->list->reply_comment ?>
+                        </span>
+                        <span class="pseudo_link quote_comment_trigger" onclick="prepare_comment_reply(this, true, true)">
+                            <span class="fa fa-quote-right"></span>
+                            <?= $this_module->language->list->quote_comment ?>
+                        </span>
+                    <? endif; ?>
+                    
+                    <? if( $account->_exists && $account->id_account != $comment->id_author ): ?>
+                        <span class="pseudo_link"
+                              onclick="if( confirm($_GENERIC_CONFIRMATION) ) spam_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); }, this)">
+                            <span class="fa fa-flag"></span>
+                            <?= $language->flag_as_spam ?>
+                        </span>
+                        <? if($account->level < config::MODERATOR_USER_LEVEL): ?>
+                            <a href="<?= "{$config->full_root_url}/contact/?action=report&type=comment&id={$comment->id_comment}" ?>" target="_blank">
+                                <span class="fa fa-exclamation-circle"></span>
+                                <?= $language->report_to_webmaster ?>
+                            </a>
+                        <? endif; ?>
+                    <? endif; ?>
+                    
+                    <? if( ! is_null($author) && $account->id_account != $author->id_account ): ?>
+                        <? if($modules["messaging"]->enabled && $account->_exists): ?>
+                            <span class="pseudo_link" onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')"
+                                  title="<?= replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") ) ?>">
+                                <span class="fa fa-inbox"></span>
+                                <?= $language->pm_author ?>
+                            </span>
+                        <? else: ?>
+                            <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
+                                   || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
+                                <a href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
+                                    <span class="fa fa-envelope"></span>
+                                    <?= $language->email_author ?>
+                                </a>
+                            <? endif; ?>
+                        <? endif; ?>
+                    <? endif; ?>
+                    
+                    <? if( is_comment_editable($comment) ): ?>
+                        <a href="<?= $config->full_root_path ?>/comments/?edit=<?= $comment->id_comment ?>">
+                            <span class="fa fa-pencil"></span>
+                            <?= $this_module->language->record_nav->actions->edit ?>
+                        </a>
+                    <? endif; ?>
+    
+                    <? if( $comment->can_be_deleted() ): ?>
+                        <span class="pseudo_link"
+                              onclick="if( confirm($_GENERIC_CONFIRMATION) ) delete_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); }, this)">
+                            <span class="fa fa-trash"></span>
+                            <?= $this_module->language->record_nav->actions->trash ?>
+                        </span>
+                    <? endif; ?>
+                    
+                </div>
+                <div class="target"></div>
+            </div>
+        </div>
+        
+    <? endforeach; ?>
+    
+    <? if( $comments_count > $find_params->limit )
+        $browser->render_pagination_links($template->get("pagination_url_prefix"), $pagination); ?>
+    
+</div>
+
+<div id="comments_edit_form" style="display: none;" data-title-template="<?= htmlspecialchars($this_module->language->form->edit) ?>"></div>
+<div id="comments_edit_target" style="display: none;"></div>
+<div id="reply_target" style="display: none;"></div>
+
+<? if( $_POST["prevent_reopen"] != "true" ): ?>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            var comment_id = '<?= $_GET["reply_to"] ?>';
+        
+            if( comment_id == '' ) return;
+        
+            var $comment = $('.comment_entry[data-id-comment="' + comment_id + '"]');
+            if( $comment.length == 0 ) return;
+        
+            var $trigger = $comment.find('.comment_reply .reply_comment_trigger');
+            setTimeout(function() { prepare_comment_reply($trigger, false, true) }, 1000);
+        });
+    </script>
+<? endif; ?>
