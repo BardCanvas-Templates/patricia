@@ -37,6 +37,7 @@ if( empty($favicon) ) $favicon = "{$template->url}/media/favicon.ico";
 <!-- Defaults -->
 <script type="text/javascript">
     var $_FULL_ROOT_PATH          = '<?= $config->full_root_path ?>';
+    var $_COOKIES_DOMAIN          = '<?= $config->cookies_domain ?>';
     var $_PHP_SELF                = '<?= $_SERVER["PHP_SELF"] ?>';
     var $_REQUEST_URI             = '<?= $_SERVER["REQUEST_URI"] ?>';
     var $_CURRENT_USER_ID_ACCOUNT = '<?= $account->id_account ?>';
