@@ -180,24 +180,24 @@ foreach($comments as $comment)
             <div class="comment_reply">
                 <div class="trigger">
                     <? if($post->allow_comments && $allow_new_comments): ?>
-                        <span class="pseudo_link reply_comment_trigger" onclick="prepare_comment_reply(this, false, true)">
+                        <span class="comment_action_reply pseudo_link reply_comment_trigger" onclick="prepare_comment_reply(this, false, true)">
                             <span class="fa fa-reply"></span>
                             <?= $this_module->language->list->reply_comment ?>
                         </span>
-                        <span class="pseudo_link quote_comment_trigger" onclick="prepare_comment_reply(this, true, true)">
+                        <span class="comment_action_quote pseudo_link quote_comment_trigger" onclick="prepare_comment_reply(this, true, true)">
                             <span class="fa fa-quote-right"></span>
                             <?= $this_module->language->list->quote_comment ?>
                         </span>
                     <? endif; ?>
                     
                     <? if( $account->_exists && $account->id_account != $comment->id_author ): ?>
-                        <span class="pseudo_link"
+                        <span class="comment_action_flag_as_spam pseudo_link"
                               onclick="if( confirm($_GENERIC_CONFIRMATION) ) spam_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); }, this)">
                             <span class="fa fa-flag"></span>
                             <?= $language->flag_as_spam ?>
                         </span>
                         <? if($account->level < config::MODERATOR_USER_LEVEL): ?>
-                            <a href="<?= "{$config->full_root_url}/contact/?action=report&type=comment&id={$comment->id_comment}" ?>" target="_blank">
+                            <a class="comment_action_report_to_webmaster" href="<?= "{$config->full_root_url}/contact/?action=report&type=comment&id={$comment->id_comment}" ?>" target="_blank">
                                 <span class="fa fa-exclamation-circle"></span>
                                 <?= $language->report_to_webmaster ?>
                             </a>
@@ -206,7 +206,7 @@ foreach($comments as $comment)
                     
                     <? if( ! is_null($author) && $account->id_account != $author->id_account ): ?>
                         <? if($modules["messaging"]->enabled && $account->_exists): ?>
-                            <span class="pseudo_link" onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')"
+                            <span class="comment_action_pm_author pseudo_link" onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')"
                                   title="<?= replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") ) ?>">
                                 <span class="fa fa-inbox"></span>
                                 <?= $language->pm_author ?>
@@ -214,7 +214,7 @@ foreach($comments as $comment)
                         <? else: ?>
                             <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
                                    || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
-                                <a href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
+                                <a class="comment_action_email_author" href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
                                     <span class="fa fa-envelope"></span>
                                     <?= $language->email_author ?>
                                 </a>
@@ -223,14 +223,14 @@ foreach($comments as $comment)
                     <? endif; ?>
                     
                     <? if( is_comment_editable($comment) ): ?>
-                        <a href="<?= $config->full_root_path ?>/comments/?edit=<?= $comment->id_comment ?>">
+                        <a class="comment_action_edit" href="<?= $config->full_root_path ?>/comments/?edit=<?= $comment->id_comment ?>">
                             <span class="fa fa-pencil"></span>
                             <?= $this_module->language->record_nav->actions->edit ?>
                         </a>
                     <? endif; ?>
     
                     <? if( $comment->can_be_deleted() ): ?>
-                        <span class="pseudo_link"
+                        <span class="pseudo_link comment_action_trash"
                               onclick="if( confirm($_GENERIC_CONFIRMATION) ) delete_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); }, this)">
                             <span class="fa fa-trash"></span>
                             <?= $this_module->language->record_nav->actions->trash ?>
