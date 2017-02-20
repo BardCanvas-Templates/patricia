@@ -35,6 +35,7 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
     $config->globals["modules:posts.working_posts_set"] =& $posts_data->posts;
     $this_module->load_extensions("front", "index_renderer_before_loop_start");
     
+    $config->globals["posts_rendered_in_index"] = 0;
     foreach( $posts_data->posts as $post ):
         $author = $post->get_author();
         if( $template->get("page_tag") == "home" && $post->pin_to_home == 1 )
@@ -45,6 +46,8 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
         
         $special = "";
         if( $post->visibility == "level_based" || $post->main_category_visibility == "level_based" ) $special = " special";
+        
+        $this_module->load_extensions("front", "index_renderer_item_before");
         ?>
         
         <article class="post clearfix <?= $pinned ?><?= $special ?>" data-post-id="<?= $post->id_post ?>"
@@ -220,8 +223,12 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
             </div>
             
         </article>
-    
-    <? endforeach; ?>
+        
+        <?
+        $config->globals["posts_rendered_in_index"]++;
+        $this_module->load_extensions("front", "index_renderer_item_after");
+    endforeach;
+    ?>
     
 </div>
 
