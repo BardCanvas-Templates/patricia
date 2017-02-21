@@ -69,7 +69,7 @@ if( empty($favicon) ) $favicon = "{$template->url}/media/favicon.ico";
     var tinymce_custom_plugins = [];
     var tinymce_custom_toolbar_buttons = [];
 </script>
-<script type="text/javascript" src="<?= $config->full_root_path ?>/media/defaults~v<?=$config->scripts_version?>.js"></script>
+<script type="text/javascript" src="<?= $config->full_root_path ?>/media/defaults~v<?=$config->engine_version?>.js"></script>
 
 <!-- jQuery -->
 <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery-1.11.0.min.js"></script>

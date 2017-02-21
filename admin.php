@@ -37,17 +37,15 @@ header("Content-Type: text/html; charset=utf-8"); ?>
     <!-- Others -->
     <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.blockUI.js"></script>
     <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.form.min.js"></script>
-    
-    <!-- Noty -->
     <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/noty-2.3.7/js/noty/packaged/jquery.noty.packaged.min.js"></script>
     <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/noty-2.3.7/js/noty/themes/default.js"></script>
-    <script type="text/javascript" src="<?= $config->full_root_path ?>/media/noty_defaults~v<?=$config->scripts_version?>.js"></script>
     
     <!-- Core functions and styles -->
-    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/styles~v<?=$config->scripts_version?>.css">
-    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/admin~v<?=$config->scripts_version?>.css">
-    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/functions~v<?=$config->scripts_version?>.js"></script>
-    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/notification_functions~v<?=$config->scripts_version?>.js"></script>
+    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/noty_defaults~v<?=$config->engine_version?>.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/styles~v<?=$config->engine_version?>.css">
+    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/admin~v<?=$config->engine_version?>.css">
+    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/functions~v<?=$config->engine_version?>.js"></script>
+    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/notification_functions~v<?=$config->engine_version?>.js"></script>
     
     <!-- This template -->
     <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/styles~v<?=$config->scripts_version?>.css">
