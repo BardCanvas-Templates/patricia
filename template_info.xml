@@ -2,9 +2,9 @@
 <template>
 
     <name>Patricia</name>
-
-    <version>1.0.4</version>
-
+    <version>1.0.5</version>
+    <group>templates_basic</group>
+    
     <description>
         Base with color and font changes
     </description>
@@ -23,8 +23,6 @@
         • Headings:        Nunito
         • Footer, sidebar: Firas Sans Condensed
     ]]></notes>
-
-    <group>Yokika</group>
 
     <tags>responsive, facebook clone, wordpress clone, mobile, desktop, multpile columns</tags>
 
