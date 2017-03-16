@@ -51,9 +51,9 @@ header("Content-Type: text/html; charset=utf-8"); ?>
     <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/notification_functions~v<?=$config->engine_version?>.js"></script>
     
     <!-- This template -->
-    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/styles~v<?=$config->scripts_version?>.css">
-    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/post_styles~v<?=$config->scripts_version?>.css">
-    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/colors~v<?=$config->scripts_version?>.css">
+    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/styles~v1.0.1-2.css">
+    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/post_styles~v1.0.1-2.css">
+    <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/colors~v1.0.1-5.css">
     
     <? if( $template->count_left_sidebar_groups() > 0 ): ?>
         <!-- Left sidebar -->
