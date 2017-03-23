@@ -77,7 +77,7 @@ ksort($menu);
                 <?= $language->admin->bar_title ?> <?= $config->engine_version ?>
             <? endif; ?>
         </span>
-        <span class="current_server" style="display: none">
+        <span class="current_server">
             <span class="fa fa-server"></span>
             #<?= $config->numeric_server_id ?> (<?= current(explode(".", gethostname())) ?>)
         </span>
