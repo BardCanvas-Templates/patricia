@@ -66,15 +66,21 @@ ksort($menu);
     </span>
     
     <span class="admin_bar_title <? if($current_module) echo "current"; ?>">
-        <span class="fa fa-info-circle"></span>
-        <? if($current_module): ?>
-            <?= ucwords(str_replace("_", " ", $current_module->name)) ?> v<?= $current_module->version ?>
-        <? else: ?>
-            <?= $language->admin->bar_title ?> <?= $config->engine_version ?>
-        <? endif; ?>
-        •
-        <span class="fa fa-server"></span>
-        #<?= $config->numeric_server_id ?> (<?= current(explode(".", gethostname())) ?>)
+        <span class="current_item_version">
+            <span class="fa fa-info-circle"></span>
+            <? if($current_module): ?>
+                <?= empty($current_module->language->display_name)
+                    ? ucwords(str_replace("_", " ", $current_module->name))
+                    : $current_module->language->display_name ?>
+                v<?= $current_module->version ?>
+            <? else: ?>
+                <?= $language->admin->bar_title ?> <?= $config->engine_version ?>
+            <? endif; ?>
+        </span>
+        <span class="current_server" style="display: none">
+            <span class="fa fa-server"></span>
+            #<?= $config->numeric_server_id ?> (<?= current(explode(".", gethostname())) ?>)
+        </span>
     </span>
     
     <?= implode("", $menu); ?>
