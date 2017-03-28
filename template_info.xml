@@ -2,8 +2,8 @@
 <template>
 
     <name>Patricia</name>
-    <version>1.0.9</version>
-    <group>templates_basic</group>
+    <version>1.0.10</version>
+    <group>templates</group>
     
     <description>
         Base with color and font changes
