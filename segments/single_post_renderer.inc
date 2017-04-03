@@ -206,6 +206,8 @@ $author = $post->get_author();
             </span>
         <? endif; ?>
         
+        <? $current_module->load_extensions("front", "single_post_actions"); ?>
+        
     </p>
     
     <div class="post_contents">

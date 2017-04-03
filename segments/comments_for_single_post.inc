@@ -228,7 +228,7 @@ foreach($comments as $comment)
                             <?= $this_module->language->record_nav->actions->edit ?>
                         </a>
                     <? endif; ?>
-    
+                    
                     <? if( $comment->can_be_deleted() ): ?>
                         <span class="pseudo_link comment_action_trash"
                               onclick="if( confirm($_GENERIC_CONFIRMATION) ) delete_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); }, this)">
@@ -236,6 +236,8 @@ foreach($comments as $comment)
                             <?= $this_module->language->record_nav->actions->trash ?>
                         </span>
                     <? endif; ?>
+                    
+                    <? $this_module->load_extensions("front", "single_comment_actions"); ?>
                     
                 </div>
                 <div class="target"></div>

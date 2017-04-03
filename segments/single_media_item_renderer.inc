@@ -3,7 +3,7 @@
  * Single media item renderer
  *
  * @var config       $config
- * @var module       $current_module posts
+ * @var module       $current_module gallery
  * @var media_record $item
  */
 
@@ -170,6 +170,9 @@ $author = $item->get_author();
                 <?= $language->report_to_webmaster ?>
             </a>
         <? endif; ?>
+        
+        <? $current_module->load_extensions("front", "single_media_item_actions"); ?>
+        
     </p>
     
     <div class="post_contents">
