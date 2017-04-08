@@ -1,6 +1,11 @@
 
 # Patricia Template Change Log
 
+## [1.1.2] - 2017-04-08
+
+- Added classes and attributes to left sidebar widgets template
+  for easing CSS/JS manipulation.
+
 ## [1.1.1] - 2017-04-03
 
 - Added extension point for single post actions
