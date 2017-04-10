@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.1.3] - 2017-04-10
+
+- Added buttons to the full tinymce editor toolbar
+
 ## [1.1.2] - 2017-04-08
 
 - Added classes and attributes to left sidebar widgets template
