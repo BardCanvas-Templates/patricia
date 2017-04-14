@@ -49,7 +49,11 @@ $authors = $comments_repository->get_all_authors($comments);
                 <? endif; ?>
             <? else: ?>
                 <span class="fa fa-question-circle-o fa-fw"></span>
-                <?= $comment->author_display_name ?>:            
+                <?= $comment->author_display_name ?>:
+                <?
+                $config->globals["comments:rendering_comment"] = $comment;
+                $this_module->load_extensions("front", "single_comment_after_anon_name");
+                ?>
             <? endif; ?>
             [<?= time_elapsed_string($comment->creation_date) ?>]:
             <a href="<?= $post->get_permalink() ?>#comment_<?= $comment->id_comment ?>">
