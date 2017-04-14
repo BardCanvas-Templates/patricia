@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.1.5] - 2017-04-14
+
+- Added extension point on user profile home.
+
 ## [1.1.4] - 2017-04-14
 
 - Added extension points
