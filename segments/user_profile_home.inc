@@ -105,4 +105,6 @@ $author = $template->get("user_profile_account");
         </section>
     <? endif; ?>
     
+    <? $current_module->load_extensions("user_profile_home", "additional_sections"); ?>
+    
 </div>
