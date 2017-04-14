@@ -91,6 +91,10 @@ foreach($comments as $comment)
                             <span class="meta_field">
                                 <span class="fa fa-question-circle-o fa-fw"></span>
                                 <?= $comment->author_display_name ?>
+                                <?
+                                $config->globals["comments:rendering_comment"] = $comment;
+                                $this_module->load_extensions("front", "single_comment_after_anon_name");
+                                ?>
                             </span>
                         <? endif; ?>
                         
@@ -236,8 +240,11 @@ foreach($comments as $comment)
                             <?= $this_module->language->record_nav->actions->trash ?>
                         </span>
                     <? endif; ?>
-                    
-                    <? $this_module->load_extensions("front", "single_comment_actions"); ?>
+    
+                    <?
+                    $config->globals["comments:rendering_comment"] = $comment;
+                    $this_module->load_extensions("front", "single_comment_actions");
+                    ?>
                     
                 </div>
                 <div class="target"></div>
