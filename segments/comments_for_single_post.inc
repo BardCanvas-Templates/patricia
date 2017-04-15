@@ -55,13 +55,16 @@ foreach($comments as $comment)
         $author     = $comment->get_author();
         $avatar_url = $author->get_avatar_url();
         $max_level  = $settings->get("modules:comments.max_indent_level"); if( empty($max_level) ) $max_level = 5;
-        $level      = $comment->indent_level <= $max_level ? $comment->indent_level : $max_level; ?>
+        $level      = $comment->indent_level <= $max_level ? $comment->indent_level : $max_level;
+        
+        $config->globals["comments:rendering_comment"] = $comment; ?>
         
         <div class="comment_entry" id="comment_<?= $comment->id_comment ?>" data-id-comment="<?= $comment->id_comment ?>"
              data-parent-comment="<?= $comment->parent_comment ?>" data-indent-level="<?= $level ?>"
              data-post-id="<?= $post->id_post ?>">
             
             <div class="comment_wrapper">
+                
                 <div class="meta_box clearfix">
                     <img class="user_avatar" src="<?= $avatar_url ?>">
                     
@@ -91,10 +94,7 @@ foreach($comments as $comment)
                             <span class="meta_field">
                                 <span class="fa fa-question-circle-o fa-fw"></span>
                                 <?= $comment->author_display_name ?>
-                                <?
-                                $config->globals["comments:rendering_comment"] = $comment;
-                                $this_module->load_extensions("front", "single_comment_after_anon_name");
-                                ?>
+                                <? $this_module->load_extensions("front", "single_comment_after_anon_name"); ?>
                             </span>
                         <? endif; ?>
                         
@@ -178,7 +178,9 @@ foreach($comments as $comment)
                 
                 <div class="content">
                     <?= $comment->get_processed_content() ?>
+                    <? $this_module->load_extensions("front", "single_comment_after_content"); ?>
                 </div>
+                
             </div>
             
             <div class="comment_reply">
@@ -240,15 +242,13 @@ foreach($comments as $comment)
                             <?= $this_module->language->record_nav->actions->trash ?>
                         </span>
                     <? endif; ?>
-    
-                    <?
-                    $config->globals["comments:rendering_comment"] = $comment;
-                    $this_module->load_extensions("front", "single_comment_actions");
-                    ?>
+                    
+                    <? $this_module->load_extensions("front", "single_comment_actions"); ?>
                     
                 </div>
                 <div class="target"></div>
             </div>
+            
         </div>
         
     <? endforeach; ?>
