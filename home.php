@@ -275,6 +275,8 @@ foreach($template->get_includes("pre_eof") as $module => $include)
 internals::render(__FILE__);
 ?>
 
+<div id="notifications_killer" style="display: none;"><?= $language->dismiss_all_notifications ?></div>
+
 </body>
 </html>
 <?
