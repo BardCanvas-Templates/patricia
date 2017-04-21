@@ -108,6 +108,8 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
                             <?= $tag ?>
                         </a>
                     <? endforeach; ?>
+                    
+                    <? $this_module->load_extensions("front", "index_renderer_item_meta_fields_upper"); ?>
                 </div>
                 <div class="meta_section">
                     <a class="meta_field dimmed" href="<?= $config->full_root_url ?>/date/<?= date("Y/m/d", strtotime($post->publishing_date)) ?>/">
@@ -128,6 +130,8 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
                             <?= preg_replace('/\d+s/', "", time_remaining_string($post->expiration_date)) ?>
                         </span>
                     <? endif; ?>
+                    
+                    <? $this_module->load_extensions("front", "index_renderer_item_meta_fields_lower"); ?>
                     
                     <? if( ! empty($post->creation_ip) && $account->level >= config::MODERATOR_USER_LEVEL ): ?>
                         
