@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.1.7] - 2017-04-20
+
+- Added extension points on post index renderer.
+
 ## [1.1.6] - 2017-04-15
 
 - Added extension point on comments for single posts.
