@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.1.9] - 2017-04-22
+
+- Added extension point.
+
 ## [1.1.8] - 2017-04-21
 
 - Added support for one-click on-screen notifications dismissal.
