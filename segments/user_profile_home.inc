@@ -33,20 +33,50 @@ $author = $template->get("user_profile_account");
         <form class="framed_content">
             <div class="field">
                 <div class="caption">
+                    <?= $current_module->language->user_profile_page->info->level ?>
+                </div>
+                <div class="input">
+                    <?= $author->level ?> (<?= $config->user_levels_by_level[$author->level] ?>)
+                </div>
+            </div>
+            <div class="field">
+                <div class="caption">
+                    <?= $current_module->language->user_profile_page->info->member_since ?>
+                </div>
+                <div class="input">
+                    <?= time_complete_string($author->creation_date) . " (" . time_elapsed_string($author->creation_date) .")" ?>
+                </div>
+            </div>
+            <?
+            $last_seen = $author->get_last_activity();
+            if( ! empty($last_seen) ): ?>
+                <div class="field">
+                    <div class="caption">
+                        <?= $current_module->language->user_profile_page->info->last_seen ?>
+                    </div>
+                    <div class="input">
+                        <?= $author->get_last_activity(true) ?>
+                    </div>
+                </div>
+            <? endif; ?>
+            <div class="field">
+                <div class="caption">
                     <?= $current_module->language->user_profile_page->info->country ?>
                 </div>
                 <div class="input">
                     <?= $author->country_name ?>
                 </div>
             </div>
-            <div class="field">
-                <div class="caption">
-                    <?= $current_module->language->user_profile_page->info->home_page ?>
+            <? if( ! empty($author->homepage_url) ): ?>
+                <div class="field">
+                    <div class="caption">
+                        <?= $current_module->language->user_profile_page->info->home_page ?>
+                    </div>
+                    <div class="input">
+                        <a href="<?= $author->homepage_url ?>" target="_blank"><?= $author->homepage_url ?></a>
+                    </div>
                 </div>
-                <div class="input">
-                    <a href="<?= $author->homepage_url ?>" target="_blank"><?= $author->homepage_url ?></a>
-                </div>
-            </div>
+            <? endif; ?>
             <div class="field">
                 <div class="caption">
                     <?= $current_module->language->user_profile_page->info->feed ?>
