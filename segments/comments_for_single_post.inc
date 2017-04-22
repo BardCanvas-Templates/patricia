@@ -253,8 +253,14 @@ foreach($comments as $comment)
         
     <? endforeach; ?>
     
-    <? if( $comments_count > $find_params->limit )
-        $browser->render_pagination_links($template->get("pagination_url_prefix"), $pagination); ?>
+    <?
+    if( $comments_count > $find_params->limit )
+    {
+        echo "<p id='posts_pagination'>";
+        $browser->render_pagination_links($template->get("pagination_url_prefix"), $pagination);
+        echo "</p>";
+    }
+    ?>
     
 </div>
 
@@ -275,6 +281,15 @@ foreach($comments as $comment)
         
             var $trigger = $comment.find('.comment_reply .reply_comment_trigger');
             setTimeout(function() { prepare_comment_reply($trigger, false, true) }, 1000);
+        });
+    </script>
+<? endif; ?>
+
+<? if( $_GET["offset"] != "" ): ?>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $.scrollTo( $('#post_comments') );
         });
     </script>
 <? endif; ?>
