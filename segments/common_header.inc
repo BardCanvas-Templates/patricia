@@ -30,13 +30,19 @@ if( empty($favicon) ) $favicon = "{$template->url}/media/favicon.ico";
 <meta charset="UTF-8">
 
 <title><?= $template->get_page_title() ?></title>
-<meta name="description"   content="<?= $settings->get("engine.meta_description") ?>">
-<meta name="keywords"      content="<?= $settings->get("engine.meta_keywords") ?>">
-<meta name="rating"        content="<?= $settings->get("engine.meta_rating") == "" ? "general" : $settings->get("engine.meta_rating") ?>">
-<meta name="revisit-after" content="<?= $settings->get("engine.meta_revisit_after") == "" ? "7 days" : $settings->get("engine.meta_revisit_after") ?>">
-<? if( $settings->get("engine.meta_robots") != "" ): ?>
-    <meta name="robots" content="<?= $settings->get("engine.meta_robots") ?>">
-<? endif ?>
+<meta name="description"        content="<?= $template->sanitize_meta_var($template->page_meta_description) ?>">
+<meta name="keywords"           content="<?= $template->sanitize_meta_var($template->page_meta_keywords) ?>">
+<meta name="rating"             content="<?= $template->sanitize_meta_var($template->page_meta_rating) ?>">
+<meta name="revisit-after"      content="<?= $template->sanitize_meta_var($template->page_meta_revisit_after) ?>">
+<meta name="robots"             content="<?= $template->sanitize_meta_var($template->page_meta_robots) ?>">
+<meta itemprop="name"           content="<?= $template->sanitize_meta_var($template->get_page_title(false)) ?>">
+<meta itemprop="description"    content="<?= $template->sanitize_meta_var($template->page_meta_description) ?>">
+<meta itemprop="image"          content="<?= $template->page_meta_image ?>">
+<meta property="og:site_name"   content="<?= $template->sanitize_meta_var($settings->get("engine.website_name")) ?>" />
+<meta property="og:title"       content="<?= $template->sanitize_meta_var($template->get_page_title(false)) ?>" />
+<meta property="og:description" content="<?= $template->sanitize_meta_var($template->page_meta_description) ?>" />
+<meta property="og:url"         content="<?= $template->page_meta_url ?>" />
+<meta property="og:image"       content="<?= $template->page_meta_image ?>" />
 
 <link rel="icon"          type="image/x-icon" href="<?= $favicon ?>">
 <link rel="shortcut icon" type="image/x-icon" href="<?= $favicon ?>">
