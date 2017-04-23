@@ -1,6 +1,12 @@
 
 # Patricia Template Change Log
 
+## [1.2.0] - 2017-04-23
+
+- Fixed navigation issues on single post comments.
+- Added fields to user profile info section.
+- Refactored header metas.
+
 ## [1.1.9] - 2017-04-22
 
 - Added extension point.
