@@ -185,6 +185,12 @@ foreach($comments as $comment)
             
             <div class="comment_reply">
                 <div class="trigger">
+                    
+                    <a class="comment_action_permalink" href="<?= $comment->get_permalink() ?>" target="_blank">
+                        <span class="fa fa-link"></span>
+                        <?= $language->permalink ?>
+                    </a>
+                    
                     <? if($post->allow_comments && $allow_new_comments): ?>
                         <span class="comment_action_reply pseudo_link reply_comment_trigger" onclick="prepare_comment_reply(this, false, true)">
                             <span class="fa fa-reply"></span>
@@ -208,6 +214,16 @@ foreach($comments as $comment)
                                 <?= $language->report_to_webmaster ?>
                             </a>
                         <? endif; ?>
+                    <? endif; ?>
+                    
+                    <? if( $account->level >= config::MODERATOR_USER_LEVEL
+                           && $comment->id_author != $account->id_account
+                           && in_array($comment->status, array("published", "reviewing", "spam")) ): ?>
+                        <span class="comment_action_reject pseudo_link important"
+                              onclick="if( confirm($_GENERIC_CONFIRMATION) ) reject_comment('<?= $comment->id_comment ?>', function() { $('.comment_entry[data-id-comment=<?= $comment->id_comment ?>]').fadeOut('fast', function() { $(this).remove(); }); })">
+                            <span class="fa fa-times"></span>
+                            <?= $this_module->language->record_nav->actions->reject ?>
+                        </span>
                     <? endif; ?>
                     
                     <? if( ! is_null($author) && $account->id_account != $author->id_account ): ?>
