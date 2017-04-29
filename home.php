@@ -35,20 +35,12 @@ header("Content-Type: text/html; charset=utf-8"); ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <? include __DIR__ . "/segments/common_header.inc"; ?>
-    
-    <!-- Others -->
-    <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.blockUI.js"></script>
-    <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/jquery.form.min.js"></script>
-    <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/noty-2.3.7/js/noty/packaged/jquery.noty.packaged.min.js"></script>
-    <script type="text/javascript" src="<?= $config->full_root_path ?>/lib/noty-2.3.7/js/noty/themes/default.js"></script>
-    
-    <!-- Core functions and styles -->
-    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/noty_defaults~v<?=$config->engine_version?>.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/styles~v<?=$config->engine_version?>.css">
-    <link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/media/admin~v<?=$config->engine_version?>.css">
-    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/functions~v<?=$config->engine_version?>.js"></script>
-    <script type="text/javascript"          src="<?= $config->full_root_path ?>/media/notification_functions~v<?=$config->engine_version?>.js"></script>
+    <!--suppress CssInvalidPropertyValue -->
+    <style type="text/css">@-ms-viewport{ width: device-width; }</style>
+    <meta name="viewport"              content="width=device-width, initial-scale=1">
+    <? $template->set("include_notification_functions", true); ?>
+    <? $template->set("jquery_ui_theme", "smoothness"); ?>
+    <? include ROOTPATH . "/includes/common_header.inc" ?>
     
     <!-- This template -->
     <link rel="stylesheet" type="text/css" href="<?= $template->url ?>/media/styles~v1.0.1-2.css">
