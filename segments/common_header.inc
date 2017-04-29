@@ -109,7 +109,7 @@ if( empty($favicon) ) $favicon = "{$template->url}/media/favicon.ico";
 
 <!-- jQuery UI -->
 <script type="text/javascript"          src="<?= $config->full_root_path ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/lib/jquery-ui-themes-1.10.4/blitzer/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<?= $config->full_root_path ?>/lib/jquery-ui-themes-1.10.4/smoothness/jquery-ui.css">
 <script type="text/javascript"          src="<?= $config->full_root_path ?>/lib/jquery.ui.touch-punch.min.js"></script>
 
 <!-- UI Additions -->
