@@ -66,6 +66,7 @@ header("Content-Type: text/html; charset=utf-8"); ?>
       data-page-tag="<?= $template->get("page_tag") ?>" class="admin"
       data-is-mobile="<?= is_mobile() ? "true" : "false" ?>"
       data-is-known-user="<?= $account->_exists ? "true" : "false" ?>"
+      data-user-slug="<?= $account->user_name ?>"
       data-user-level="<?= $account->level ?>">
 
 <div id="body_wrapper">
