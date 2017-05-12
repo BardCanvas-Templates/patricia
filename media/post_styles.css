@@ -74,6 +74,9 @@ article.single_post, .content_frame {
 }
 
 article.single_post.reviewing { background-color: #ffe3e6; }
+article.single_post.draft     { background-color: lightyellow; }
+article.single_post.hidden    { background-color: #efefef; }
+article.single_post.trashed   { background-color: #ffeeb6; }
 
 /* Single post overrides */
 
