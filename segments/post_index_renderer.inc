@@ -37,6 +37,7 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
     
     $config->globals["posts_rendered_in_index"] = 0;
     foreach( $posts_data->posts as $post ):
+        
         $author = $post->get_author();
         if( $template->get("page_tag") == "home" && $post->pin_to_home == 1 )
             $pinned = "pinned";
@@ -232,6 +233,8 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
         $config->globals["posts_rendered_in_index"]++;
         $this_module->load_extensions("front", "index_renderer_item_after");
     endforeach;
+    
+    $this_module->load_extensions("front", "index_renderer_after_loop_end");
     ?>
     
 </div>
