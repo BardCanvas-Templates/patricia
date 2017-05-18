@@ -108,7 +108,7 @@ $author = $template->get("user_profile_account");
         </section>
     <? endif; ?>
     
-    <? if( $modules["contact"]->enabled && $author->id_account != $account->id_account ): ?>
+    <? if( $author->id_account != $account->id_account ): ?>
         <section>
             <h2><?= replace_escaped_vars($language->contact->contact_user, '{$display_name}', $author->get_processed_display_name()) ?></h2>
             <div class="framed_content">
@@ -121,14 +121,16 @@ $author = $template->get("user_profile_account");
                             </span>
                         </li>
                     <? endif; ?>
-                    <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
-                           || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
-                        <li>
-                            <a href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
-                                <span class="fa fa-envelope"></span>
-                                <?= $language->contact->email->title ?>
-                            </a>
-                        </li>
+                    <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
+                        <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
+                               || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
+                            <li>
+                                <a href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
+                                    <span class="fa fa-envelope"></span>
+                                    <?= $language->contact->email->title ?>
+                                </a>
+                            </li>
+                        <? endif; ?>
                     <? endif; ?>
                 </ul>
             </div>

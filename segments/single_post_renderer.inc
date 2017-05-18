@@ -173,7 +173,9 @@ $author = $post->get_author();
                     <?= $language->pm_author ?>
                 </span>
             <? endif; ?>
-        <? else: ?>
+        <? endif; ?>
+        
+        <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
             <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
                    || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
                 <a class="item action" href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">

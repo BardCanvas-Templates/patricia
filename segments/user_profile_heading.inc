@@ -33,7 +33,7 @@ $author = $template->get("user_profile_account");
                         <span class="fa fa-pencil"></span>
                         <?= $language->edit_profile ?>
                     </button>
-                <? elseif($modules["contact"]->enabled): ?>
+                <? else: ?>
                     <span class="pull-right">
                         <? if( $modules["messaging"]->enabled && $account->_exists ): ?>
                             <button class="send_pm"
@@ -43,13 +43,15 @@ $author = $template->get("user_profile_account");
                                 <?= $language->contact->pm->caption ?>
                             </button>
                         <? endif; ?>
-                        <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
-                               || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
-                            <button class="send_email" title="<?= $language->contact->email->title ?>"
-                                    onclick="location.href = '<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>'">
-                                <span class="fa fa-envelope"></span>
-                                <?= $language->contact->email->caption ?>
-                            </button>
+                        <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
+                            <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
+                                   || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
+                                <button class="send_email" title="<?= $language->contact->email->title ?>"
+                                        onclick="location.href = '<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>'">
+                                    <span class="fa fa-envelope"></span>
+                                    <?= $language->contact->email->caption ?>
+                                </button>
+                            <? endif; ?>
                         <? endif; ?>
                     </span>
                 <? endif; ?>

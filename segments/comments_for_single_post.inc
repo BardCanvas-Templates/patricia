@@ -233,7 +233,9 @@ foreach($comments as $comment)
                                 <span class="fa fa-inbox"></span>
                                 <?= $language->pm_author ?>
                             </span>
-                        <? else: ?>
+                        <? endif; ?>
+                        
+                        <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
                             <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
                                    || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
                                 <a class="comment_action_email_author" href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
