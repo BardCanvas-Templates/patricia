@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.4.0] - 2017-05-23
+
+- Simplified PM links/buttons rendering method.
+
 ## [1.3.3] - 2017-05-17
 
 - Added support for contact module option to avoid anonymous guests to send email to registered users.
