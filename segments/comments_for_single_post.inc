@@ -227,13 +227,8 @@ foreach($comments as $comment)
                     <? endif; ?>
                     
                     <? if( ! is_null($author) && $account->id_account != $author->id_account ): ?>
-                        <? if($modules["messaging"]->enabled && $account->_exists): ?>
-                            <span class="comment_action_pm_author pseudo_link" onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')"
-                                  title="<?= replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") ) ?>">
-                                <span class="fa fa-inbox"></span>
-                                <?= $language->pm_author ?>
-                            </span>
-                        <? endif; ?>
+                        
+                        <?= $author->get_pm_sending_link($language->pm_author, "comment_action_pm_author pseudo_link") ?>
                         
                         <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
                             <? if( $author->get_engine_pref("@contact:allow_emails") != "false"

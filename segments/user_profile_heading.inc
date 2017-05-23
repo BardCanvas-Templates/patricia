@@ -35,14 +35,9 @@ $author = $template->get("user_profile_account");
                     </button>
                 <? else: ?>
                     <span class="pull-right">
-                        <? if( $modules["messaging"]->enabled && $account->_exists ): ?>
-                            <button class="send_pm"
-                                    onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')"
-                                    title="<?= replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") ) ?>">
-                                <span class="fa fa-inbox"></span>
-                                <?= $language->contact->pm->caption ?>
-                            </button>
-                        <? endif; ?>
+                        
+                        <?= str_replace(array("<span", "</span>"), array("<button", "</button>"), $author->get_pm_sending_link($language->contact->pm->caption, "send_pm")) ?>
+                        
                         <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
                             <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
                                    || $account->level >= config::MODERATOR_USER_LEVEL ): ?>

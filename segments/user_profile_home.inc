@@ -113,14 +113,12 @@ $author = $template->get("user_profile_account");
             <h2><?= replace_escaped_vars($language->contact->contact_user, '{$display_name}', $author->get_processed_display_name()) ?></h2>
             <div class="framed_content">
                 <ul>
-                    <? if( $modules["messaging"]->enabled && $account->_exists ): ?>
-                        <li>
-                            <span class="pseudo_link" style="white-space: normal" onclick="send_pm(this, '<?= $author->user_name ?>', '<?= htmlspecialchars($author->display_name) ?>')">
-                                <span class="fa fa-inbox"></span>
-                                <?= replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") ) ?>
-                            </span>
-                        </li>
-                    <? endif; ?>
+                    <?
+                    $caption = replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") );
+                    $link    = $author->get_pm_sending_link($caption, "pseudo_link", "white-space: normal");
+                    if( ! empty($link) ) echo "<li>$link</li>\n";
+                    ?>
+                    
                     <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
                         <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
                                || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
