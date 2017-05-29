@@ -33,11 +33,13 @@ $repository = new comments_repository();
 
 list($find_params, $comments_count, $comments, $pagination) = $repository->get_for_single_post($post->id_post);
 if( $comments_count == 0 && $post->allow_comments == 0 ) return;
+
 /** @var comment_record[] $parents */
 $parents = array();
-foreach($comments as $comment)
-    if( empty($comment->parent_comment) )
-        $parents[$comment->id_comment] = $comment;
+foreach($comments as $comment) $parents[$comment->id_comment] = $comment;
+
+$config->globals["comments:current_comments_set"] =& $comments;
+$this_module->load_extensions("front", "comments_for_single_post_presets");
 ?>
 
 <div id="post_comments" class="content_frame" data-post-id="<?= $post->id_post ?>">
