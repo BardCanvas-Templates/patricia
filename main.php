@@ -223,26 +223,28 @@ header("Content-Type: text/html; charset=utf-8"); ?>
             $this_module = $modules[$module];
             include "{$this_module->abspath}/contents/{$include}";
         }
-        ?>
         
-        <div class="footer_contents" align="center">
-            <?= $settings->get("engine.website_name") ?>
-            <?= replace_escaped_vars($language->powered_by, '{$version}', $config->engine_version) ?>
-            •
-            <?
-            if( $config->query_tracking_enabled ) echo "
-                <span class='fa fa-database fa-fw'></span>" . number_format($database->get_tracked_queries_count()) . " •
-                ";
-            echo "
-                <span class='fa fa-clock-o fa-fw'></span>" . number_format(microtime(true) - $global_start_time, 3) . "s •
-                <span class='fa fa-tachometer fa-fw'></span>" . number_format(memory_get_usage(true) / 1024 / 1024, 1) . "MiB
-            ";
-            if($config->display_performance_details && EMBED_INTERNALS)
-                echo "• <span class=\"fa fa-plus fa-fw pseudo_link\" onclick=\"$('.internals').show();\"></span>";
-            ?>
-        </div>
+        $footer_contents = $template->get("footer_contents");
+        if( empty($footer_contents) ) $footer_contents = '
+            <div class="footer_contents" align="center">
+                {$website_name}
+                {$powered_by}
+                •
+                {$query_tracking_info}
+                {$timing_info}
+                {$memory_info}
+                {$internals_link}
+            </div>
+        ';
+        echo replace_escaped_objects($footer_contents, array(
+            '{$website_name}'        => $settings->get("engine.website_name"),
+            '{$powered_by}'          => replace_escaped_vars($language->powered_by, '{$version}', $config->engine_version),
+            '{$query_tracking_info}' => $config->query_tracking_enabled ? ("<span class='fa fa-database fa-fw'></span>" . number_format($database->get_tracked_queries_count()) . " • ") : "",
+            '{$timing_info}'         => "<span class='fa fa-clock-o fa-fw'></span>" . number_format(microtime(true) - $global_start_time, 3) . "s • ",
+            '{$memory_info}'         => "<span class='fa fa-tachometer fa-fw'></span>" . number_format(memory_get_usage(true) / 1024 / 1024, 1) . "MiB ",
+            '{$internals_link}'      => $config->display_performance_details && EMBED_INTERNALS ? " • <span class=\"fa fa-plus fa-fw pseudo_link\" onclick=\"$('.internals').show();\"></span>" : "",
+        ));
         
-        <?
         foreach($template->get_includes("footer_bottom") as $module => $include)
         {
             $this_module = $modules[$module];
