@@ -248,9 +248,9 @@ header("Content-Type: text/html; charset=utf-8"); ?>
 </div><!-- /#body_wrapper -->
 
 <!-- These must be at the end of the document -->
-<script type="text/javascript" src="<?= $config->full_root_path ?>/lib/tinymce-4.4.0/tinymce.min.js"></script>
+<script type="text/javascript" src="<?= $config->full_root_path ?>/lib/tinymce-4.6.3/tinymce.min.js"></script>
 <? $template->render_tinymce_additions(); ?>
-<script type="text/javascript" src="<?= $config->full_root_path ?>/media/init_tinymce~v<?=$config->scripts_version?>.js"></script>
+<script type="text/javascript" src="<?= $config->full_root_path ?>/media/init_tinymce~v<?=$config->engine_version?>.js"></script>
 <script type="text/javascript">
     $(document).ready(function()
     {
