@@ -234,8 +234,8 @@ $this_module->load_extensions("front", "index_renderer_before_internal_wrapper")
     
 </div>
 
-<div id="posts_pagination">
-    
-    <? $posts_data->browser->render_pagination_links($template->get("pagination_url_prefix"), $posts_data->pagination); ?>
-    
-</div>
+<? if($posts_data->pagination["total_pages"] > 1): ?>
+    <div id="posts_pagination">
+        <? $posts_data->browser->render_pagination_links($template->get("pagination_url_prefix"), $posts_data->pagination); ?>
+    </div>
+<? endif; ?>
