@@ -179,7 +179,7 @@ $author = $item->get_author();
             </p>
         <? elseif($item->type == "video"): ?>
             <p>
-                <video width="100%" controls><source src='<?= $item->get_item_url(true) ?>'></video>
+                <?= convert_media_tags("<img src='' data-media-type='video' data-id-media='{$item->id_media}'>") ?>
             </p>
         <? endif; ?>
         
