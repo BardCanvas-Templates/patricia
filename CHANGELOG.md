@@ -1,6 +1,10 @@
 
 # Patricia Template Change Log
 
+## [1.5.8] - 2020-05-04
+
+- Added extension points on comments for single post segment.
+
 ## [1.5.7] - 2017-12-14
 
 - Added TinyMCE support to popup layout.
