@@ -108,31 +108,47 @@ $author = $template->get("user_profile_account");
         </section>
     <? endif; ?>
     
-    <? if( $author->id_account != $account->id_account ): ?>
-        <section>
-            <h2><?= replace_escaped_vars($language->contact->contact_user, '{$display_name}', $author->get_processed_display_name()) ?></h2>
-            <div class="framed_content">
-                <ul>
-                    <?
-                    $caption = replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") );
-                    $link    = $author->get_pm_sending_link($caption, "pseudo_link", "white-space: normal");
-                    if( ! empty($link) ) echo "<li>$link</li>\n";
-                    ?>
-                    
-                    <? if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" ): ?>
-                        <? if( $author->get_engine_pref("@contact:allow_emails") != "false"
-                               || $account->level >= config::MODERATOR_USER_LEVEL ): ?>
-                            <li>
-                                <a href="<?= $config->full_root_path ?>/contact/?target=<?= urlencode($author->user_name) ?>">
-                                    <span class="fa fa-envelope"></span>
-                                    <?= $language->contact->email->title ?>
-                                </a>
-                            </li>
-                        <? endif; ?>
-                    <? endif; ?>
-                </ul>
-            </div>
-        </section>
+    <? if( $author->id_account != $account->id_account
+           && ($modules["contact"]->enabled || $modules["messaging"]->enabled) ): ?>
+        <?
+        $items = array();
+        
+        if( $modules["messaging"]->enabled )
+        {
+            $caption = replace_escaped_vars( $language->contact->pm->title, '{$website_name}', $settings->get("engine.website_name") );
+            $link    = $author->get_pm_sending_link($caption, "pseudo_link", "white-space: normal");
+            if( ! empty($link) ) $items[] = $link;
+        }
+        
+        if( $modules["contact"]->enabled )
+        {
+            if( $account->_exists || $settings->get("modules:contact.no_anonymous_emails") != "true" )
+            {
+                if(
+                    $author->get_engine_pref("@contact:allow_emails") != "false" ||
+                    $account->level >= config::MODERATOR_USER_LEVEL
+                ) {
+                    $aun = urlencode($author->user_name);
+                    $items[] = "
+                        <a href='{$config->full_root_path}/contact/?target={$aun}'>
+                            <span class='fa fa-envelope'></span>
+                            {$language->contact->email->title}
+                        </a>
+                    ";
+                }
+            }
+        }
+        ?>
+        <? if( ! empty($items) ): ?>
+            <section>
+                <h2><?= replace_escaped_vars($language->contact->contact_user, '{$display_name}', $author->get_processed_display_name()) ?></h2>
+                <div class="framed_content">
+                    <ul>
+                        <? foreach($items as $item) echo "<li>$item</li>"; ?>
+                    </ul>
+                </div>
+            </section>
+        <? endif; ?>
     <? endif; ?>
     
     <? $current_module->load_extensions("user_profile_home", "additional_sections"); ?>
