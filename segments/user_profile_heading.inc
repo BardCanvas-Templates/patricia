@@ -66,6 +66,11 @@ $author = $template->get("user_profile_account");
             {
                 foreach($module->language->user_profile_tabs->tab as $tab)
                 {
+                    if( $tab["restricted"] &&
+                        $account->id_account != $author->id_account &&
+                        $account->level < $config::MODERATOR_USER_LEVEL
+                    ) continue;
+                    
                     $priority = isset($tab["priority"]) ? (int) $tab["priority"] : 100;
                     
                     $tabs[trim($tab["mode"])] = sprintf("%03.0f", $priority) . "\t" . trim($tab);
